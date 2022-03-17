@@ -26,4 +26,4 @@ https://www.youtube.com/watch?v=tkZ9lEiSRfQ
 
 # Sample Layout
 ### About
-Provide basic implementation of layout for final project. See comments in CSS file to know how to adjust.  
+Provide basic implementation of layout for final project. See comments in CSS file in ```assets``` to know how to adjust.  
