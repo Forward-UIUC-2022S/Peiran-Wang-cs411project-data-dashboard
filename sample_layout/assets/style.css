@@ -1,0 +1,85 @@
+body {
+  background-color: rgb(244, 244, 252);
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.Navigation {
+  height: 50px;
+  line-height: 50px;
+  width: 100vw;
+  background-color: rgb(22, 17, 29); /*color of navigation bar, can use rgb() style, more info to see https://www.w3schools.com/cssref/css_colors.asp*/
+  padding-left: 10px;
+  font-size: 26px;
+}
+
+.all-wrapper{
+  position: relative;
+}
+
+#widget01 {
+  border-radius: 10px;
+  height: 380px;  /*change the number to adjust the height of square*/
+  width: 480px;   /*change the number to adjust the width of square*/
+  position: absolute;
+  left: 10px; /*change the number to adjust the x-position of square*/
+  top: 60px;  /*change the number to adjust the y-position of square*/
+  background-color: white;  /*color of square, can use rgb() style, more info to see https://www.w3schools.com/cssref/css_colors.asp*/
+  padding: 10px;
+}
+
+#widget02 {
+  border-radius: 10px;
+  height: 380px;  
+  width: 480px;   
+  position: absolute;
+  top: 60px;
+  left: 520px;
+  background-color: white;
+  padding: 10px;
+}
+
+#widget03 {
+  border-radius: 10px;
+  height: 380px;  
+  width: 480px;   
+  position: absolute;
+  top: 60px;
+  left: 1030px;
+  background-color: white;
+  padding: 10px;
+}
+
+#widget04 {
+  border-radius: 10px;
+  height: 380px; 
+  width: 480px;  
+  left: 10px;
+  top: 470px;
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+}
+
+#widget05 {
+  border-radius: 10px;
+  height: 380px;  
+  width: 480px;   
+  left: 520px;
+  top: 470px;
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+}
+
+#widget06 {
+  border-radius: 10px;
+  height: 380px;  
+  width: 480px;   
+  left: 1030px;
+  top: 470px;
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+}
