@@ -46,6 +46,8 @@ popularArticle_fig.update_layout(
   title = "top 5 popular areas and top 5 popular articles"
 )
 
+mysql.createTable()
+
 app.layout = html.Div(className="all-wrapper",children=[
   html.Div("Find your research paper's direction & resources", style={"color": "white"}, className="Navigation"),
   html.Div(className="main_wrapper", children= [

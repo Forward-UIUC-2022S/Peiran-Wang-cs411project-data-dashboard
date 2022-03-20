@@ -10,7 +10,7 @@ db_connection_str = 'mysql+pymysql://username:password@localhost:3306/AcademicWo
 db_connection = sql.create_engine(db_connection_str)
 
 def getTop5Professor():
-    sql = "SELECT f1.name,f1.position,p.title, f1.researchInterest, f1.photoUrl, i.name FROM faculty f1 JOIN faculty_publication f2 on f1.id = f2.faculty_id JOIN publication p ON f2.publication_id = p.id JOIN faculty_institute f3 ON f1.id = f3.faculty_id JOIN institute i on f3.institute_id = i.id ORDER BY p.numCitations DESC LIMIT 5;"
+    sql = "SELECT f.name, f.position, p.title, f.research_interest, f.photo_url, u.name FROM publication p JOIN faculty_publication fp on fp.publication_id = p.id JOIN faculty f on fp.faculty_id = f.id JOIN university u on f.university_id = u.id ORDER BY num_citations DESC LIMIT 5;"
     data = db_connection.execute(text(sql)).fetchall();
     data2 = [list(i) for i in data]
     return data2
@@ -21,7 +21,7 @@ def getTop5Areas():
     return data
 
 def getTop5Article(keyword_name):
-    sql = "SELECT title, numCitations FROM keyword f JOIN publication_keyword pk on f.id = pk.keyword_id JOIN publication p ON pk.publication_id = p.id WHERE f.name = :x ORDER BY numCitations DESC LIMIT 5;"
+    sql = "SELECT title, num_citations FROM keyword f JOIN publication_keyword pk on f.id = pk.keyword_id JOIN publication p ON pk.publication_id = p.id WHERE f.name = :x ORDER BY num_citations DESC LIMIT 5;"
     data = db_connection.execute(text(sql), {'x': keyword_name}).fetchall()
     return data
 
@@ -54,8 +54,14 @@ def insertCitaion(titleName):
     else:
         return data
 
+def createTable():
+    sql0 = "DROP TABLE IF EXISTS CitationList;"
+    db_connection.execute(text(sql0))
+    sql = "CREATE TABLE CitationList ( publication_id int primary key );"
+    db_connection.execute(text(sql))
+
 def getCitationList():
-    sql = "SELECT title, name, year, numCitations FROM publication p JOIN CitationList c on p.id = c.publication_id JOIN faculty_publication fp ON p.id = fp.publication_id JOIN faculty f ON f.id = fp.faculty_id;"
+    sql = "SELECT title, name, year, num_citations FROM publication p JOIN CitationList c on p.id = c.publication_id JOIN faculty_publication fp ON p.id = fp.publication_id JOIN faculty f ON f.id = fp.faculty_id;"
     data = db_connection.execute(text(sql)).fetchall()
     data2 = [list(i) for i in data]
     data3 = list(map(list, zip(*data2)))
@@ -73,12 +79,8 @@ def removeCitationList():
         return;
     titles = getCitationList()[0]
     for j in titles:
-        str = "UPDATE publication SET numCitations = numCitations + 1 WHERE title = :x";
+        str = "UPDATE publication SET num_citations = num_Citations + 1 WHERE title = :x";
         db_connection.execute(text(str), {"x":j})
     sql = 'DELETE FROM CitationList;'
     db_connection.execute(text(sql))
     return;
-
-
-if __name__ == "__main__" :
-   print(getTop5Professor())
